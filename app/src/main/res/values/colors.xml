@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="darkestDegree">#5F7161</color>
+    <color name="aBitDarkerDegree">#6D8B74</color>
+    <color name="lightestDegree">#EFEAD8</color>
+    <color name="aBitLighterDegree">#D0C9C0</color>
+
+
+    <!--    <color name="second_darkestDegree">#222222</color>-->
+    <!--    <color name="second_aBitDarkerDegree">#22A39F</color>-->
+    <!--    <color name="second_lightestDegree">#434242</color>-->
+    <!--    <color name="second_aBitLighterDegree">#F3EFE0</color>-->
+
+    <color name="fade_black">#323031</color>
+    <color name="golden_yellow">#FFC857</color>
+    <color name="shiny_red">#DB3A34</color>
+    <color name="sea_blue">#084C61</color>
+    <color name="old_sky_blue">#177E89</color>
+
+    <color name="special_gray">#32465A</color>
+    <color name="special_green">#43A047</color>
+    <color name="black_bg_splash">#191919</color>
+    <color name="green_bg_true">#4CAF50</color>
+</resources>

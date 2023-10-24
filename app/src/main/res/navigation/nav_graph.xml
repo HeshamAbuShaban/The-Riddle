@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="dev.training.the_riddle.ui.fragments.other_ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="dev.training.the_riddle.ui.fragments.other_ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="dev.training.the_riddle.ui.fragments.other_ui.SettingsFragment"
+        android:label="frgament_settings"
+        tools:layout="@layout/frgament_settings" />
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="dev.training.the_riddle.ui.fragments.game_ui.PlayFragment"
+        android:label="PlayFragment"
+        tools:layout="@layout/fragment_play" >
+        <action
+            android:id="@+id/action_playFragment_to_riddleContainerFragment"
+            app:destination="@id/riddleContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/riddleContainerFragment"
+        android:name="dev.training.the_riddle.ui.fragments.game_ui.RiddleContainerFragment"
+        android:label="RiddleContainerFragment"
+        tools:layout="@layout/fragment_riddle_container" >
+        <action
+            android:id="@+id/action_riddleContainerFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/riddleFragment"
+        android:name="dev.training.the_riddle.ui.fragments.RiddleFragment"
+        android:label="RiddleFragment"
+        tools:layout="@layout/fragment_riddle_true" >
+        <action
+            android:id="@+id/action_riddleFragment_self"
+            app:destination="@id/riddleFragment" />
+    </fragment>
+</navigation>
