@@ -9,6 +9,6 @@ data class Level(
     val levelNum: Int,
     val minPointToUnlock: Int,
 
-    var levelOpenStatus: Boolean = false,
-    val levelEvaluation: Float = 0.0f,
+    var levelOpenStatus: Boolean? = false,
+    var levelEvaluation: Float? = 0.0f,
 )

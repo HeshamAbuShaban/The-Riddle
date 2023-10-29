@@ -3,5 +3,11 @@
     <style name="Base.Theme.TheRiddle" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/fade_black</item>
+        <!-- Customize your theme here. -->
+
+        <item name="fontFamily">@font/sans_ara_semi_bold</item>
     </style>
 </resources>

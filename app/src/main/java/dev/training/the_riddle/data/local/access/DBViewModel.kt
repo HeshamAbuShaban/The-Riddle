@@ -1,12 +1,12 @@
 package dev.training.the_riddle.data.local.access
 
+import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import dev.training.the_riddle.app_system.AppInstance
 import dev.training.the_riddle.data.local.entities.Level
 import dev.training.the_riddle.data.local.entities.Riddle
 
-class DBViewModel : AndroidViewModel(AppInstance.getInstance()) {
+class DBViewModel(application: Application) : AndroidViewModel(application = application) {
 
     private val repository: Repository = Repository
 

@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class AppInstance private constructor() : Application() {
+class AppInstance : Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -38,7 +38,7 @@ public class RiddleFragment extends Fragment {
 
     // KEYS...
     private static final String ARG_RIDDLE_ID = "riddleId";
-    private static final String ARG_RIDDLE_TimeBySec = "timeBySec";
+    private static final String ARG_RIDDLE_TIME_BY_SEC = "timeBySec";
     private static final String ARG_RIDDLE_TYPE = "riddleType";
     private static final String
             ARG_RIDDLE_Q = "riddleQ", ARG_RIDDLE_ANS1 = "riddleA1",
@@ -89,7 +89,7 @@ public class RiddleFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(ARG_RIDDLE_TYPE, RiddleType.TrueOrFalse.riddleTypeNum);
         args.putInt(ARG_RIDDLE_ID, riddleId);
-        args.putLong(ARG_RIDDLE_TimeBySec, riddleTimeBySec);
+        args.putLong(ARG_RIDDLE_TIME_BY_SEC, riddleTimeBySec);
         args.putString(ARG_RIDDLE_Q, riddleQ);
         args.putBoolean(ARG_RIDDLE_IS_TRUE, isTheQuestionTrue);
         fragment.setArguments(args);
@@ -105,7 +105,7 @@ public class RiddleFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(ARG_RIDDLE_TYPE, RiddleType.ChooseTheCorrectAnswer.riddleTypeNum);
         args.putInt(ARG_RIDDLE_ID, riddleId);
-        args.putLong(ARG_RIDDLE_TimeBySec, riddleTimeBySec);
+        args.putLong(ARG_RIDDLE_TIME_BY_SEC, riddleTimeBySec);
         args.putString(ARG_RIDDLE_Q, riddleQ);
         args.putString(ARG_RIDDLE_RIGHT_ANS, theRightAnswer);
         args.putString(ARG_RIDDLE_ANS1, ans1);
@@ -124,7 +124,7 @@ public class RiddleFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(ARG_RIDDLE_TYPE, RiddleType.CompleteTheSentence.riddleTypeNum);
         args.putInt(ARG_RIDDLE_ID, riddleId);
-        args.putLong(ARG_RIDDLE_TimeBySec, riddleTimeBySec);
+        args.putLong(ARG_RIDDLE_TIME_BY_SEC, riddleTimeBySec);
         args.putString(ARG_RIDDLE_Q, riddleQ);
         args.putString(ARG_RIDDLE_RIGHT_ANS, theRightAnswer);
         fragment.setArguments(args);
@@ -158,7 +158,7 @@ public class RiddleFragment extends Fragment {
 
             //****************************************************************************
 
-            riddleTimeBySec = args.getLong(ARG_RIDDLE_TimeBySec, 10);
+            riddleTimeBySec = args.getLong(ARG_RIDDLE_TIME_BY_SEC, 10);
 
             //****************************************************************************
 

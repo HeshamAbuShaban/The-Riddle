@@ -1,20 +1,22 @@
 package dev.training.the_riddle.ui.fragments.other_ui
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import dev.training.the_riddle.R
 import dev.training.the_riddle.databinding.FragmentHomeBinding
-import dev.training.the_riddle.utils.GeneralUtils
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-
+    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,27 +32,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializer() {
+        navController = findNavController()
         setupClicksListeners()
-        Handler(Looper.myLooper()!!).postDelayed(this::setBtnAnimation, 650)
+
+        lifecycleScope.launch {
+            delay(650)
+            setBtnAnimation()
+        }
+//        Handler(Looper.myLooper()!!).postDelayed(this::setBtnAnimation, 650)
     }
 
     private fun setupClicksListeners() {
         with(binding) {
-            val u = GeneralUtils.getInstance()
-            var s = "undefined"
             btnHomeStartGame.setOnClickListener {
-                s = "start"
+                navController.navigate(R.id.action_homeFragment_to_playFragment)
             }
 
             btnHomeSettings.setOnClickListener {
-                s = "settings"
+                navController.navigate(R.id.action_homeFragment_to_settingsFragment)
             }
 
             btnHomeExit.setOnClickListener {
-                s = "exit"
+//                navController.navigate(R.id.action_homeFragment_to_playFragment)
+                onDestroy()
             }
-
-            u.showSnackBar(binding.root, s)
         }
     }
 

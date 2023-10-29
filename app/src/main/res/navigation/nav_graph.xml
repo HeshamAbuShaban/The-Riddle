@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="dev.training.the_riddle.ui.fragments.other_ui.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/homeFragment"
         android:name="dev.training.the_riddle.ui.fragments.other_ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
@@ -35,7 +35,7 @@
         android:id="@+id/playFragment"
         android:name="dev.training.the_riddle.ui.fragments.game_ui.PlayFragment"
         android:label="PlayFragment"
-        tools:layout="@layout/fragment_play" >
+        tools:layout="@layout/fragment_play">
         <action
             android:id="@+id/action_playFragment_to_riddleContainerFragment"
             app:destination="@id/riddleContainerFragment" />
@@ -44,7 +44,7 @@
         android:id="@+id/riddleContainerFragment"
         android:name="dev.training.the_riddle.ui.fragments.game_ui.RiddleContainerFragment"
         android:label="RiddleContainerFragment"
-        tools:layout="@layout/fragment_riddle_container" >
+        tools:layout="@layout/fragment_riddle_container">
         <action
             android:id="@+id/action_riddleContainerFragment_to_playFragment"
             app:destination="@id/playFragment" />
@@ -53,9 +53,41 @@
         android:id="@+id/riddleFragment"
         android:name="dev.training.the_riddle.ui.fragments.RiddleFragment"
         android:label="RiddleFragment"
-        tools:layout="@layout/fragment_riddle_true" >
+        tools:layout="@layout/fragment_riddle_true">
         <action
             android:id="@+id/action_riddleFragment_self"
             app:destination="@id/riddleFragment" />
     </fragment>
+    <!--Dialogs-->
+    <dialog
+        android:id="@+id/resetDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.ResetDialog"
+        android:label="ResetDialog"
+        tools:layout="@layout/dialog_reset" />
+    <dialog
+        android:id="@+id/finishedRiddlesDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.FinishedRiddlesDialog"
+        android:label="FinishedRiddlesDialog"
+        tools:layout="@layout/dialog_finished_riddles" />
+    <dialog
+        android:id="@+id/riddleSkipDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.RiddleSkipDialog"
+        android:label="RiddleSkipDialog"
+        tools:layout="@layout/dialog_skipp_riddle" />
+    <dialog
+        android:id="@+id/riddleSuccessDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.RiddleSuccessDialog"
+        android:label="RiddleSuccessDialog"
+        tools:layout="@layout/dialog_right_answer" />
+    <dialog
+        android:id="@+id/riddleTimeOutDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.RiddleTimeOutDialog"
+        android:label="RiddleTimeOutDialog"
+        tools:layout="@layout/dialog_time_out" />
+    <dialog
+        android:id="@+id/riddleWrongDialog"
+        android:name="dev.training.the_riddle.ui.fragments.dialogs.RiddleWrongDialog"
+        android:label="RiddleWrongDialog"
+        tools:layout="@layout/dialog_wrong_answer" />
+
 </navigation>

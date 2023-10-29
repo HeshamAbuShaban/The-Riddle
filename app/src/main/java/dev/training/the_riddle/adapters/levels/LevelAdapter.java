@@ -48,7 +48,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelViewHolder> {
     @Override
     public LevelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main/*item_level*/, parent, false);
+                .inflate(R.layout.item_level, parent, false);
         return new LevelViewHolder(view);
     }
 
@@ -59,10 +59,11 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelViewHolder> {
 
         //for clicking on any item
         holder.itemView.setOnClickListener(view -> {
-            if (level.getLevelOpenStatus()) {
+            var levelOpenStatus = level.getLevelOpenStatus() != null ? level.getLevelOpenStatus() : false;
+            if (levelOpenStatus) {
                 view.setBackgroundResource(R.drawable.shape_level_item_clicked);
             }
-            callback.onClick(level.getLevelNum(), level.getLevelOpenStatus());
+            callback.onClick(level.getLevelNum(), levelOpenStatus);
         });
     }
 

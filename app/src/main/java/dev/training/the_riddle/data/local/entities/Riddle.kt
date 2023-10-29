@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(
     foreignKeys = [ForeignKey(
         entity = Level::class,
-        parentColumns = ["level_num"],
+        parentColumns = ["levelNum"],
         childColumns = ["sub_level_num"],
         onDelete = CASCADE,
         onUpdate = CASCADE
@@ -40,5 +40,5 @@ data class Riddle(
     val sub_level_num: Int = 0,
 ) {
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+    var id: Int? = null
 }

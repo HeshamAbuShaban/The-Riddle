@@ -40,11 +40,11 @@ public class LevelViewHolder extends RecyclerView.ViewHolder {
         // set the points that req for each level
         textView_level_minPoint.setText(String.valueOf(level.getMinPointToUnlock()));
         // set the ratingBarLevel_evaluation each level
-        float realLevel_evaluation = level.getLevelEvaluation();
+        float realLevel_evaluation = level.getLevelEvaluation() != null ? level.getLevelEvaluation() : 0.0f;
         level_evaluation_num.setText(MessageFormat.format("%{0}", realLevel_evaluation));
         checkLevelEvaluation(realLevel_evaluation);
         //if min point for this class = the user score
-        imageView_level_state.setImageResource(level.getLevelOpenStatus() ? R.drawable.ic_lock_open : R.drawable.ic_locked);
+        imageView_level_state.setImageResource((level.getLevelOpenStatus() != null ? level.getLevelOpenStatus() : false) ? R.drawable.ic_lock_open : R.drawable.ic_locked);
     }
 
     private void checkLevelEvaluation(float realLevel_evaluation) {

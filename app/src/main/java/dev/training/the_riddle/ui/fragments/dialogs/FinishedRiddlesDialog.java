@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import org.school.riddlemethis.R;
+import dev.training.the_riddle.R;
 
 public class FinishedRiddlesDialog extends DialogFragment {
 

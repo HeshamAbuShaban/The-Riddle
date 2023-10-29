@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import org.school.riddlemethis.R;
-import org.school.riddlemethis.interfaces.DialogListener;
+import dev.training.the_riddle.R;
+import dev.training.the_riddle.app_system.interfaces.DialogListener;
 
 public class RiddleWrongDialog extends DialogFragment {
     private DialogListener okay_btn_listener;

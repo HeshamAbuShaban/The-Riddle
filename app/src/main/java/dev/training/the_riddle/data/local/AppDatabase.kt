@@ -18,9 +18,12 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun appDao(): AppDao
 
     private class RoomCallbackImpl : Callback() {
+        //        @OptIn(DelicateCoroutinesApi::class)
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            Thread { GameAssetsReader.getInstance().readRiddles() }.start()
+//            GlobalScope.launch(Dispatchers.IO) {
+            GameAssetsReader.getInstance().readRiddles()
+//            }
         }
     }
 
