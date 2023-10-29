@@ -66,10 +66,10 @@ public class RiddleFragment extends Fragment {
         }
 
         try {
-            answerCallback = (AnswerCallback) context;
-            timerListener = (TimerListener) context;
+            answerCallback = (AnswerCallback) getParentFragment();
+            timerListener = (TimerListener)  getParentFragment();
 
-            fragmentAskForSkipListener = (FragmentAskForSkipListener) context;
+            fragmentAskForSkipListener = (FragmentAskForSkipListener)  getParentFragment();
 
         } catch (ClassCastException e) {
             throw new ClassCastException(context + " must implement AnswerCallback ");

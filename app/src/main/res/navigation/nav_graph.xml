@@ -38,7 +38,14 @@
         tools:layout="@layout/fragment_play">
         <action
             android:id="@+id/action_playFragment_to_riddleContainerFragment"
-            app:destination="@id/riddleContainerFragment" />
+            app:destination="@id/riddleContainerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_out_left" >
+            <!--<argument
+                android:name="levelNum"
+                app:argType="integer"/>-->
+        </action>
     </fragment>
     <fragment
         android:id="@+id/riddleContainerFragment"
@@ -48,6 +55,9 @@
         <action
             android:id="@+id/action_riddleContainerFragment_to_playFragment"
             app:destination="@id/playFragment" />
+        <!--Possible Way is by putting the argument in the receiver destination-->
+        <!--As Such-->
+        <argument android:name="levelNum" app:argType="integer"/>
     </fragment>
     <fragment
         android:id="@+id/riddleFragment"

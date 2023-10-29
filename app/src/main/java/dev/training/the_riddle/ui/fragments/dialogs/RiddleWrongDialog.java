@@ -36,7 +36,7 @@ public class RiddleWrongDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            okay_btn_listener = (DialogListener) context;
+            okay_btn_listener = (DialogListener) getParentFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException(context
                     + " must implement DialogListener ");

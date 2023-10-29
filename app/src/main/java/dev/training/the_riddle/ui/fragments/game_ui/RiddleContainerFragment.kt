@@ -1,6 +1,5 @@
 package dev.training.the_riddle.ui.fragments.game_ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import dev.training.the_riddle.R
 import dev.training.the_riddle.adapters.RiddleAdapter
 import dev.training.the_riddle.app_system.interfaces.AnswerCallback
@@ -22,7 +22,6 @@ import dev.training.the_riddle.ui.fragments.dialogs.RiddleSuccessDialog
 import dev.training.the_riddle.ui.fragments.dialogs.RiddleTimeOutDialog
 import dev.training.the_riddle.ui.fragments.dialogs.RiddleWrongDialog
 
-@SuppressLint("SetTextI18n")
 class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     FragmentAskForSkipListener, DialogListener {
     private lateinit var binding: FragmentRiddleContainerBinding
@@ -30,7 +29,7 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
 
     private var levelNum = 1 // use the safe args instead of the getIntent
     private var scoreGeneral = 1 // use the globalValue Like sharedPref
-    private val riddleAdapter = RiddleAdapter(this@RiddleContainerFragment)
+    private lateinit var riddleAdapter: RiddleAdapter
 
 
     private var riddlesScoreInSingleLevel = 0.0f
@@ -43,6 +42,9 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     ): View {
         binding =
             FragmentRiddleContainerBinding.inflate(layoutInflater)/* ..Todo:get-The-safeArgs for LevelNum */
+        riddleAdapter = RiddleAdapter(this@RiddleContainerFragment)
+        val args: RiddleContainerFragmentArgs by navArgs()
+        levelNum = args.levelNum
         return binding.root
     }
 
@@ -135,7 +137,7 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     }
 
     // =========================================HELPER=============================
-    private val viewPager2 = binding.viewPager2
+    private val viewPager2 get() =  binding.viewPager2
 
     private fun moveToNextPager() {
         val newCurrentViewItem: Int = viewPager2.currentItem

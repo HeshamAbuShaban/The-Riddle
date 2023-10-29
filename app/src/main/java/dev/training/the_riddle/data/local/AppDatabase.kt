@@ -34,6 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
         private const val NUMBER_OF_THREADS = 4
         val databaseWriteExecutor: ExecutorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS)
 
+        @JvmStatic
         fun getDatabase(context: Context): AppDatabase =
             INSTANCE ?: synchronized(AppDatabase::class.java) {
                 return buildDatabase(context).also {
