@@ -36,6 +36,7 @@ public class ResetDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
+            // _CHECK.THIS_Instead of the context being cast to DialogTimeOutCallback we use the getParentFragment() due the place of the view that use the listener are in a subFragment to the parent fragment.
             dialogResetListener = (DialogResetListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context
@@ -60,9 +61,9 @@ public class ResetDialog extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
             //test
-            Bundle bundle = getArguments();
             delete_forever_hint = bundle.getString(ARG_MESSAGE_HINT);
         } else {
             Log.i("RiddleDialog", "onCreate: theArgumentsAreEmpty");

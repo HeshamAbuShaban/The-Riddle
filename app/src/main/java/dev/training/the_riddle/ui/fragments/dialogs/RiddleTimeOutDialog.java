@@ -38,10 +38,11 @@ public class RiddleTimeOutDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            okay_btn_listener = (DialogTimeOutCallback) context;
+            // Instead of the context being cast to DialogTimeOutCallback we use the getParentFragment() due the place of the view that use the listener are in a subFragment to the parent fragment.
+            okay_btn_listener = (DialogTimeOutCallback) getParentFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException(context
-                    + " must implement DialogListener ");
+                    + " must implement DialogTimeOutCallback ");
         }
     }
 

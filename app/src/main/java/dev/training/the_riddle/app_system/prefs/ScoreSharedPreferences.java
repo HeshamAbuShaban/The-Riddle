@@ -35,8 +35,8 @@ public class ScoreSharedPreferences {
         editor.remove(key).apply();
     }
 
-    public int getScore(String key) {
-        return sharedPreferences.getInt(key, -1);
+    public int getScore() {
+        return sharedPreferences.getInt(SharedKeys.SCORE_KEY.name(), 0);
     }
 
 }

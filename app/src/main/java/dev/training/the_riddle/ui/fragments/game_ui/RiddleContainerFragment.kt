@@ -1,5 +1,6 @@
 package dev.training.the_riddle.ui.fragments.game_ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.training.the_riddle.R
 import dev.training.the_riddle.adapters.RiddleAdapter
 import dev.training.the_riddle.app_system.interfaces.AnswerCallback
 import dev.training.the_riddle.app_system.interfaces.DialogListener
+import dev.training.the_riddle.app_system.interfaces.DialogTimeOutCallback
 import dev.training.the_riddle.app_system.interfaces.FragmentAskForSkipListener
 import dev.training.the_riddle.app_system.interfaces.TimerListener
+import dev.training.the_riddle.app_system.prefs.ScoreSharedPreferences
 import dev.training.the_riddle.data.local.access.DBViewModel
 import dev.training.the_riddle.databinding.FragmentRiddleContainerBinding
 import dev.training.the_riddle.ui.fragments.dialogs.FinishedRiddlesDialog
@@ -21,9 +26,12 @@ import dev.training.the_riddle.ui.fragments.dialogs.RiddleSkipDialog
 import dev.training.the_riddle.ui.fragments.dialogs.RiddleSuccessDialog
 import dev.training.the_riddle.ui.fragments.dialogs.RiddleTimeOutDialog
 import dev.training.the_riddle.ui.fragments.dialogs.RiddleWrongDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+@SuppressLint("SetTextI18n")
 class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
-    FragmentAskForSkipListener, DialogListener {
+    FragmentAskForSkipListener, DialogListener, DialogTimeOutCallback {
     private lateinit var binding: FragmentRiddleContainerBinding
     private val dbVModel: DBViewModel by viewModels()
 
@@ -45,6 +53,7 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
         riddleAdapter = RiddleAdapter(this@RiddleContainerFragment)
         val args: RiddleContainerFragmentArgs by navArgs()
         levelNum = args.levelNum
+        scoreGeneral = ScoreSharedPreferences.getInstance().score
         return binding.root
     }
 
@@ -55,8 +64,19 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
 
 
     private fun init() {
+        displayStatistic()
         setupVPager()
         displayRiddles()
+    }
+
+    private fun displayStatistic() {
+        //TextView WorkingGood
+        with(binding) {
+            tvRiddleActLevelId.text = levelNum.toString()
+            tvRiddleActCurrentScore.text = scoreGeneral.toString()
+            //**Standing
+            tvStandingRiddle.text = (viewPager2.currentItem + 1).toString()
+        }
     }
 
     private fun setupVPager() {
@@ -121,6 +141,9 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     override fun onTimerFinished() = RiddleTimeOutDialog.newInstance("Sorry But The Time is Over")
         .show(childFragmentManager, "TimeOut")
 
+    //..TimeOutDialog
+    override fun onClickForTimeOut() = moveToNextPager()
+
     //..Dialogs*********************************************************************************************
 
     override fun onClickForWrongAnswer() {
@@ -137,7 +160,7 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     }
 
     // =========================================HELPER=============================
-    private val viewPager2 get() =  binding.viewPager2
+    private val viewPager2 get() = binding.viewPager2
 
     private fun moveToNextPager() {
         val newCurrentViewItem: Int = viewPager2.currentItem
@@ -160,7 +183,11 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
         val newCurrentViewItem: Int = viewPager2.currentItem
         if (newCurrentViewItem == viewPager2.adapter!!.itemCount - 1) {
             //** here reached the last page so do ->
-            FinishedRiddlesDialog().show(childFragmentManager, "DoneRiddles")
+            lifecycleScope.launch {
+                FinishedRiddlesDialog().show(childFragmentManager, "DoneRiddles")
+                delay(3250)
+                findNavController().navigate(R.id.action_riddleContainerFragment_to_playFragment)
+            }
 //            Handler().postDelayed(this::onBackPressed, 3250) //..DoPopInstead
         } else {
             viewPager2.currentItem = newCurrentViewItem + 1
@@ -193,6 +220,7 @@ class RiddleContainerFragment : Fragment(), AnswerCallback, TimerListener,
     //..LifeCycle
     override fun onDestroy() {
         super.onDestroy()
+        ScoreSharedPreferences.getInstance().putScore(scoreGeneral)
         updateLevelEvaluation()
     }
 

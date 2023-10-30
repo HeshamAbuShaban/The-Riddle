@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:tag="displayLevel"
                 android:text="@string/level"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -37,9 +38,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@string/start"
+                android:layout_marginStart="@dimen/_2sdp"
                 android:textColor="#D32F2F"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="4" />
 
 
         </LinearLayout>
@@ -65,9 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@string/start"
+                android:layout_marginStart="@dimen/_2sdp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="20" />
         </LinearLayout>
 
     </LinearLayout>
@@ -85,10 +88,10 @@
 
         <TextView
             android:id="@+id/tv_timer_forRiddle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="15dp"
+            android:layout_weight="0.5"
+            android:gravity="start"
             android:text="@string/timer"
             android:textColor="@color/white"
             android:textSize="19sp" />
@@ -97,7 +100,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -105,7 +109,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginEnd="10dp"
                 android:text="@string/riddles_count"
                 android:textColor="@color/golden_yellow"
                 android:textSize="18sp"
